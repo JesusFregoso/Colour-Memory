@@ -6,21 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Colour Memory Game</title>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="../resources/libs/easytimer.min.js"></script>
     <script src="../javascript/app.js"></script>
     <style>
-        #container { width: 720px; height:576px; display: inline;}
+        #container { width: 720px; height:576px;}
 
-        #game{  width: 600px; height: 576px; display: inherit; }
+        #game{  
+            width: 570px;
+            height: 576px;
+            float: left;
+        }
 
         li {
             padding: 0;
             float: left;
             margin: 10px;
             list-style: none;
-            background-color: gray;
+            background-image: url('../resources/images/card_bg.gif');
+            background-size: 100%;
             outline: solid;
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
         }
 
         img{
@@ -29,22 +35,32 @@
         }
 
         .game-info {
-            margin-top: 0px;
-            left: 0px;
-            display: inherit;
+            margin-top: 10px;
+            margin-right: 10px;
+            width: 140px;
+            display: inline;
+            float: right;
         }
 
         .game-records{
             margin-top: 20px;
             outline: solid;
-            width: 100px;
-            height: 300px;
+            width: 140px;
+            height: 305px;
+            font-size: 25px;
+            text-align: center;
         }
 
         .logotype{
+            margin-top: 10px;
             height: 50px;
-            width: 120px;
+            width: 140px;
         }
+
+        li.activate{
+            opacity: 0.3;
+        }
+
 
     </style>
     <script>
@@ -63,9 +79,17 @@
     <div id="game"></div>
     <div class="game-info">
         <div class="logotype">
-            <img src="../resources/images/logo.png">
+            <img src="../resources/images/logo.png" class="match">
         </div>
         <div class="game-records">
+            <span>Time:</span>
+            <div id="time">
+                <div class="values"></div>
+            </div>
+            <span>Score:</span>
+            <div id="score">
+                <div class="values"></div>
+            </div>
         </div>
     </div>
 </div>
