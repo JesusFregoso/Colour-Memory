@@ -1,13 +1,13 @@
 function App(){
     let colors = [
-        {"value":"cyan","class":'cyan-card'},
-        {"value":"purple","class":'purple-card'},
-        {"value":"yellow","class":'yellow-card'},
-        {"value":"blue","class":'blue-card'},
-        {"value":"orange","class":'orange-card'},
-        {"value":"green","class":'green-card'},
-        {"value":"brown","class":'brown-card'},
-        {"value":"red","class":'red-card'},
+        {"value":"red","imageName":'colour-red'},
+        {"value":"yellow","imageName":'colour-yellow'},
+        {"value":"green","imageName":'colour-green'},
+        {"value":"cyan","imageName":'colour-cyan'},
+        {"value":"blue","imageName":'colour-blue'},
+        {"value":"purple","imageName":'colour-purple'},
+        {"value":"pink","imageName":'colour-pink'},
+        {"value":"orange","imageName":'colour-orange'},
       ];
     let cards = [];
     let colorRepetido = {};
@@ -22,7 +22,7 @@ function App(){
     this.generateCards = ()=>{
         let copyColors = colors;
         while (copyColors.length != 0) {
-            var index = Math.floor(Math.random()*copyColors.length);
+            let index = Math.floor(Math.random()*copyColors.length);
             cards.push(copyColors[index]);
             cards.push(copyColors[index]);
             copyColors.splice(index, 1);  // This removes the picked element from the array
@@ -31,16 +31,20 @@ function App(){
         this.generateHtml();
     }
     this.generateHtml= ()=>{
+
+        let element = document.createElement('ol');
+
+
             // output images then hide them
         var output = "<ol>"; 
         for (var i = 0; i < 16; i++) { 
         output += "<li>";
-        output += "<div class='card'><div class='card-block "+cards[i].class+"'>This is some text within a card block.</div>";
+        output += "<img src=../resources/images/"+cards[i].imageName+".gif>";
         output += "</li>";
         }
         output += "</ol>";
-        document.getElementById("container").innerHTML = output;
-        $("card").hide();
+        document.getElementById("game").innerHTML = output;
+        $("#game img").hide();
 
         var guess1 = "";
         var guess2 = "";
