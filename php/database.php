@@ -7,11 +7,11 @@
   * get the conection to db with pdo object you can use Database::getInstance()->pdo
   */
 class Database{
-	private static $instancia;
-	private static $DB_SERVER = '127.0.0.1';
-    private static $DB_USER = 'root';
-    private static $DB_PASS = '';
-    private static $DB_NAME = 'colour_memory';
+	private static $instance;
+	private $DB_SERVER = '127.0.0.1';
+    private $DB_USER = 'root';
+    private $DB_PASS = '';
+    private $DB_NAME = 'colour_memory';
 	/**
 	 * The function is private to prevent the creation of multiples instances,you can use Database::getInstance()
 	 */
@@ -19,16 +19,16 @@ class Database{
 		   
 		   
 		try {
-			 $stringConection='mysql:host='.$DB_SERVER.';dbname='.$DB_NAME.';charset=UTF8;';
+			 $stringConection='mysql:host='.$this->DB_SERVER.';dbname='.$this->DB_NAME.';charset=UTF8;';
 			
 			 if ( !empty($DB_CONFIG['DB_PORT']) ){
-				$stringConection.='port='.$DB_CONFIG['DB_PORT'].';';
+				$stringConection.='port=3306;';
 			 }		 
-			$db = @new PDO($stringConection, $DB_USER, $DB_PASS,array(
+			$db = @new PDO($stringConection, $this->DB_USER, $this->DB_PASS,array(
 				PDO::ATTR_PERSISTENT => false
 			));				
 			$this->pdo=$db;
-			$db->exec('USE '.$DB_NAME);			
+			$db->exec('USE '.$this->DB_NAME);			
 			$msg='connected to db';
 		} catch (PDOException $e) {			
 			

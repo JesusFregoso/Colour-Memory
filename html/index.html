@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Colour Memory Game</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../resources/libs/easytimer.min.js"></script>
     <script src="../javascript/app.js"></script>
     <style>
@@ -17,7 +17,7 @@
             float: left;
         }
 
-        li {
+        #game li {
             padding: 0;
             float: left;
             margin: 10px;
@@ -51,20 +51,85 @@
             text-align: center;
         }
 
+        .rank-records{
+            text-align: left;
+            font-size: 15px;
+        }
+
         .logotype{
             margin-top: 10px;
             height: 50px;
             width: 140px;
         }
 
-        li.activate{
+        .activate{
             opacity: 0.3;
+        }
+
+        .start-button{
+            margin-top: 15px;
+            display: inline;
+            float: right;
+            margin-right: 8px;
+        }
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 50px 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 9px;
+        }
+
+        .button-save{
+            background-color: blue; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+        .button-close{
+            background-color: red; /* Green */
+            margin-left: 10px;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */
         }
 
 
     </style>
     <script>
-    $( function(){
+    $(document).ready(function () {
         let app =new App();
         console.log(app);
         app.init();
@@ -82,14 +147,51 @@
             <img src="../resources/images/logo.png" class="match">
         </div>
         <div class="game-records">
-            <span>Time:</span>
-            <div id="time">
-                <div class="values"></div>
+            <div class="actual-records">
+                <span>Time:</span>
+                <div id="time">
+                    <div class="values">00:00:00</div>
+                </div>
+                <span>Score:</span>
+                <div id="score">
+                    <div class="value">0</div>
+                </div>
             </div>
-            <span>Score:</span>
-            <div id="score">
-                <div class="values"></div>
+            <div class="rank-records">
+                
             </div>
         </div>
     </div>
+    <div class="start-button">
+        <button id="card-0" class="button btnStartGame"> Restart/Start Game </button>
+    </div>
+</div>
+
+<div id="modalRecord" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <p>
+        Congratz this is you record you want to save it??
+    </p>
+    <p>
+        score:
+        <span id="scoreModal"></span>
+    </p>
+    <p>
+        time:
+        <span id="timeModal"></span>
+    </p>
+    Player Name    
+    <input type="text" name="player_name" id="playerName">
+    <br>
+    <br>
+    Player Email
+    <input type="text" name="player_email" id="playerEmail">
+    <br>
+    <br>
+    <button id="btnSave" class="button-save"> Save Record</button>
+    <button id="btnClose" class="button-close"> Close</button>
+  </div>
+
 </div>
