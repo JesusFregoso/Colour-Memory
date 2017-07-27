@@ -1,7 +1,5 @@
 <?php
-	require_once 'database.php';
-
-	$servername = "localhost";
+	$servername = "127.0.0.1";
 	$username = "root";
 	$password = "";
 	$dbname = "colour_memory";
@@ -67,27 +65,6 @@
 				Score : ".$_POST['player_score']." Time: ".$_POST['player_score']."";
 		$msg = wordwrap($msg,70);
 		mail($_POST['player_email'],"Colour Memory Record",$msg,$headers);
-	}
-
-	function execSql($sql){
-		$db = Database::getInstance();
-		$pdo = $db->pdo;
-		$stmt = $pdo->prepare($sql);						
-		$res = $stmt->execute();
-		if ($res!==true){
-			$error=$stmt->errorInfo();			
-			$success=false;
-			$msg=$error[2];				
-			if ($msg=='MySQL server has gone away'){
-				$db=Database::getInstance();
-				$db->reconectar();
-			}
-		}else{
-			$records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			$success=true;
-			$stmt->closeCursor();
-		}
-		return $records;
 	}
 
 
