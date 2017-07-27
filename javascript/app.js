@@ -269,7 +269,7 @@ function App(){
                 get_records:true
             },
             dataType:'json',
-            url: "http://localhost/Colour-Memory/php/controlador.php",
+            url: "http://localhost/colour-memory/php/controlador.php",
             success:(response)=>{
                 $('.actual-records').hide();
                 $('.rank-records').show();
@@ -301,7 +301,7 @@ function App(){
                 save_record : true
             },
             dataType:'json',
-            url: "http://localhost/Colour-Memory/php/controlador.php",
+            url: "http://localhost/colour-memory/php/controlador.php",
             success: (response)=> {
                 this.handleModal('close');
             }
